@@ -6,8 +6,6 @@ https://www.altlinux.org/Etcnet_start
 
 https://www.altlinux.org/Etcnet
 
-==========================
-
 Настройка удалённого доступа Secure Shell c генерацией и последующими обменами ключей
 
 https://www.altlinux.org/SSH
