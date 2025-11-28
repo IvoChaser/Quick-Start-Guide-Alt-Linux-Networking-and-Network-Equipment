@@ -1,0 +1,82 @@
+cd - переход в каталог - только в один, если написать cd etc/net - не сработает
+For example : cd etc
+Для перехода глубже в каталоги в начале команды пишем /. 
+For example : cd /etc/net/ifaces
+
+ls - отображение всех файлов и папок в текущей директроии
+
+su - 
+зайти в режим суперпользователя, для этого нужно знать пароль
+
+    Базовая настройка сети
+
+ip a - отображает полную информацию о сетевых картах на пк, а также MAC-адреса и прочую информацию
+ip -br a - выведет только статус сетевых карт и их ip-адреса
+ip a |less - если информация не умещается на всём экране, данная команда позволит просматривать построчно, чтобый выйти - жмём q
+
+Чтобы настроить IP адрес, путь по умолчанию и базовые настройки нужно перейти в каталог /etc/net/ifaces
+там будут каталоги с названиями соответствующих сетевых карт, например: enp6s19, enp7s12, ens19 и т.д.
+
+Переходим в нужную нам папку
+Там должны быть файлы options ipv4address ipv4route - последний не всегда
+---------------
+Настройка options
+    Для DHCP:
+
+Вариант 1:
+TYPE=eth
+BOOTPROTO=static
+SYSTEMD_BOOTPROTO=static
+CONFIG_IPV4=yes
+CONFIG_WIRELESS=no
+SYSTEMMD_CONTROLLED=no
+NM_CONTROLLED=no
+DISABLED=no
+
+Вариант 2:
+
+TYPE=eth
+DISABLED=no
+NM_CONTROLLED=no
+BOOTPROTO=dhcp
+==============
+    Для Static:
+
+Вариант 1:
+TYPE=eth
+BOOTPROTO=static
+SYSTEMD_BOOTPROTO=static
+CONFIG_IPV4=yes
+CONFIG_WIRELESS=no
+SYSTEMMD_CONTROLLED=no
+NM_CONTROLLED=no
+DISABLED=no
+
+Вариант 2:
+TYPE=eth
+BOOTPROTO=static
+SYSTEMD_BOOTPROTO=static
+DISABLED=no
+NM_CONTROLLED=no
+
+CONFIG_IPV4=YES
+
+если хотим чтобы система игнорировала ненужный нам интерфейс то с обоих случаях и для dhcp и для static пишем у DISABLE=yes
+-----------
+если таковые файлы отсутствуют. создаём :
+nano ipv4address - в нём пишем нужный нам Ip с маской, например:
+
+192.168.10.10/24
+*сохраняем*
+
+nano ipv4route
+
+Так же после вышеуказанных настроек нужно включить ip-forwarding, для этого :
+переходим в /ec/net/ifaces, там нас будет ждать файл sysctl.conf открываем его через nano или vim 
+Включение маршрутизации на Linux:
+в файле /etc/sysctl.conf (в альт линукс это файл /etc/net/sysctl.conf)
+найти строчку net.ipv4.ip_forward = 0 и установить в состояние 1
+сохраняем, если в nano - ctrl+o, enter, crtl+x 
+
+
+
