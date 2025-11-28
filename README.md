@@ -5,6 +5,7 @@ Quick-Start-Guide для простой настройки etcnet подробн
 https://www.altlinux.org/Etcnet_start
 
 https://www.altlinux.org/Etcnet
+
 ==========================
 Настройка удалённого доступа Secure Shell
 
