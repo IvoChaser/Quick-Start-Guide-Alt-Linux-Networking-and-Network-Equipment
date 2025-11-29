@@ -25,8 +25,8 @@ ip a |less - если информация не умещается на всём
 
 Вариант 1:
 TYPE=eth
-BOOTPROTO=static
-SYSTEMD_BOOTPROTO=static
+BOOTPROTO=dhcp
+SYSTEMD_BOOTPROTO=dhcp4
 CONFIG_IPV4=yes
 CONFIG_WIRELESS=no
 SYSTEMMD_CONTROLLED=no
@@ -58,8 +58,7 @@ BOOTPROTO=static
 SYSTEMD_BOOTPROTO=static
 DISABLED=no
 NM_CONTROLLED=no
-
-CONFIG_IPV4=YES
+CONFIG_IPV4=yes
 
 если хотим чтобы система игнорировала ненужный нам интерфейс то с обоих случаях и для dhcp и для static пишем у DISABLE=yes
 -----------
