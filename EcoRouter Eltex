@@ -1,1 +1,12 @@
+EcoRouter базовая настройка порта ip mask...
 
+> enable
+> configure terminal
+> interface GigEth1 - все что после interface это название виртуально конфигурации без привязки к физическому порту можно обозвать как угодно, но не более 15 символов
+> ip address 192.168.1.1 255.255.255.0 или ip address 192.168.1.1/24 - два разных способа записать маску
+> exit - выходим из конфигурации виртуального порта
+> port ge0 - заходим на физический порт 
+> service-instance GigEth1/ge0
+> encapsulation untagged
+> connect ip interface GigEth1
+>
